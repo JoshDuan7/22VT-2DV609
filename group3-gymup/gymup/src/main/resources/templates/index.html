@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<!--    <meta http-equiv="refresh" content="3; URL=/main"/>-->
+    <title>Legacy System</title>
+</head>
+
+<body>
+"This is main page of legacy system"
+<input id="userId" type="hidden" th:value="${userId}">
+<button onclick="window.location.href='main'">go to booking system GymUP</button>
+
+<button onclick="checkAnswer()">logout</button>
+
+<script type="text/javascript">
+    var myContent = document.getElementById("userId").value;
+    localStorage.setItem("member_id", myContent);
+
+    function checkAnswer(){
+        localStorage.clear();
+        location = '/login';
+    }
+</script>
+
+</body>
+</html>

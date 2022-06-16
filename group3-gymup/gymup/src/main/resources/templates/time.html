@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <style>
+        body {
+            background:url('/img/backgroundT.jpg') no-repeat center fixed;
+            background-size: cover;
+        }
+
+        .confirmButton {
+            display: block;
+            width: 30%;
+            height: 15%;
+            margin: 0% 35%;  /* top: right: bottom: left */
+            padding: 20px 0%;
+            font-size: 150%;
+            border: none;
+            background-color: #4d79ff;
+            color: white;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .confirmButton:hover {
+            background-color: #000060;
+            color: #ffffff;
+        }
+
+        p {
+            text-align: center;
+            margin: 0% 0%; /* top: right: bottom: left */
+            font-weight: bolder;
+            width: 100%;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>GymUP book</title>
+
+</head>
+<body marginheight="0px" marginwidth="0px">
+<div class="background-image">
+    <h1 style="text-align: center">GymUP™</h1>
+    <h2 style="text-align: center">Select time</h2>
+<div class="container">
+<div class="vertical-center">
+<form onSubmit="return checkAnswer();">
+    <p><label style="margin: 5px 0 5px 0; font-size: 150%; text-align: center">
+        Start time: <input id="start-time" style="font-size: 150%" type="text" class="time-pickable" readonly>
+    </label></p><br>
+
+    <p><label style="margin: 5px 0 5px 0; font-size: 150%">
+         End time: <input id="end-time" style="font-size: 150%" type="text" class="time-pickable" value="" readonly>
+    </label></p><br>
+
+    <button class="confirmButton wrapper"><input type="submit" class="submit" hidden>Confirm</button>
+</form>
+</div>
+</div>
+
+</div>
+
+<script>
+    function activate() {
+        document.head.insertAdjacentHTML("beforeend", `
+		<style>
+			.time-picker {
+				position: absolute;
+				display: inline-block;
+				padding: 10px 5px;
+				text-align: center;
+				background: #eeeeee;
+				border-radius: 6px;
+			}
+
+			.time-picker__select {
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				outline: none;
+				text-align: center;
+				border: 1px solid #dddddd;
+				border-radius: 6px;
+				padding: 6px 10px;
+				text-align: center;
+				background: #ffffff;
+				cursor: pointer;
+				font-family: 'Heebo', sans-serif;
+			}
+		</style>
+	`);
+
+        document.querySelectorAll(".time-pickable").forEach(timePickable => {
+            let activePicker = null;
+
+            timePickable.addEventListener("focus", () => {
+                if (activePicker) return;
+
+                activePicker = show(timePickable);
+
+                const onClickAway = ({ target }) => {
+                    if (
+                        target === activePicker
+                        || target === timePickable
+                        || activePicker.contains(target)
+                    ) {
+                        return;
+                    }
+
+                    document.removeEventListener("mousedown", onClickAway);
+                    document.body.removeChild(activePicker);
+                    activePicker = null;
+                };
+
+                document.addEventListener("mousedown", onClickAway);
+            });
+        });
+    }
+
+    function show(timePickable) {
+        const picker = buildPicker(timePickable);
+        const { bottom: top, left } = timePickable.getBoundingClientRect();
+
+        picker.style.top = `${top}px`;
+        picker.style.left = `${left}px`;
+
+        document.body.appendChild(picker);
+
+        return picker;
+    }
+
+    function buildPicker(timePickable) {
+        const picker = document.createElement("div");
+        const hourOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map(numberToOption);
+        const minuteOptions = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55].map(numberToOption);
+
+        picker.classList.add("time-picker");
+        picker.innerHTML = `
+		<select class="time-picker__select">
+			${hourOptions.join("")}
+		</select>
+		:
+		<select class="time-picker__select">
+			${minuteOptions.join("")}
+		</select>
+		<select class="time-picker__select">
+			<option value="am">am</option>
+			<option value="pm">pm</option>
+		</select>
+	`;
+
+        const selects = getSelectsFromPicker(picker);
+
+        selects.hour.addEventListener("change", () => timePickable.value = getTimeStringFromPicker(picker));
+        selects.minute.addEventListener("change", () => timePickable.value = getTimeStringFromPicker(picker));
+        selects.meridiem.addEventListener("change", () => timePickable.value = getTimeStringFromPicker(picker));
+
+        if (timePickable.value) {
+            const { hour, minute, meridiem } = getTimePartsFromPickable(timePickable);
+
+            selects.hour.value = hour;
+            selects.minute.value = minute;
+            selects.meridiem.value = meridiem;
+        }
+
+        return picker;
+    }
+
+    function getTimePartsFromPickable(timePickable) {
+        const pattern = /^(\d+):(\d+) (am|pm)$/;
+        const [hour, minute, meridiem] = Array.from(timePickable.value.match(pattern)).splice(1);
+
+        return {
+            hour,
+            minute,
+            meridiem
+        };
+    }
+
+    function getSelectsFromPicker(timePicker) {
+        const [hour, minute, meridiem] = timePicker.querySelectorAll(".time-picker__select");
+
+        return {
+            hour,
+            minute,
+            meridiem
+        };
+    }
+
+    function getTimeStringFromPicker(timePicker) {
+        const selects = getSelectsFromPicker(timePicker);
+
+        return `${selects.hour.value}:${selects.minute.value} ${selects.meridiem.value}`;
+    }
+
+    function numberToOption(number) {
+        const padded = number.toString().padStart(2, "0");
+
+        return `<option value="${padded}">${padded}</option>`;
+    }
+
+    activate();
+
+    function checkAnswer(){
+        var response = document.getElementById('start-time').value;
+        var secondResponse = document.getElementById('end-time').value;
+        localStorage.setItem("start-time", response);
+        localStorage.setItem("end-time", secondResponse);
+        if (typeof response === 'string' && typeof secondResponse === 'string')
+            location = "/confirmation";
+        else
+            location = 'mainPage';
+        return false;
+    }
+
+</script>
+</body>
+</html>

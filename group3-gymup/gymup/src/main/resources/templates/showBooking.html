@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Booking</title>
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body marginheight="0px" marginwidth="0px">
+<div class="background-image">
+<h1 style="text-align: center">GymUP™</h1>
+<div class="container">
+<div class="vertical-center">
+    <label style="margin: 0 0 0 0; font-size: 150%">
+        <b>Booking id: </b><br><input id="bookingId" style="font-size: 100%" type="text" th:value="${bookingId}" readonly>
+    </label><br>
+    <label style="margin: 0 0 0 0; font-size: 150%">
+        <b>Member id: </b><br><input id="memberId" style="font-size: 100%" type="text" th:value="${memberId}" readonly>
+    </label><br>
+    <label style="margin: 0 0 0 0; font-size: 150%">
+        <b>Equipment id: </b><br><input id="equipmentId" style="font-size: 100%" type="text" th:value="${equipmentId}" readonly>
+    </label><br>
+    <label style="margin: 0 0 0 0; font-size: 150%">
+        <b>Date: </b><br><input id="date" style="font-size: 100%" type="text" th:value="${date}" readonly>
+    </label><br>
+    <label style="margin: 0 0 0 0; font-size: 150%">
+        <b>Start time: </b><br><input id="startTime" style="font-size: 100%" type="text" th:value="${startTime}" readonly>
+    </label><br>
+    <label style="margin: 0 0 0 0; font-size: 150%">
+        <b>End time: </b><br><input id="endTime" style="font-size: 100%" type="text" th:value="${endTime}" readonly>
+    </label><br>
+
+    <p><button onclick="window.location.href='main'" class="confirmButton wrapper">GO TO MAIN PAGE</button></p>
+
+    <h3 style="text-align: center">Thanks for your booking!</h3>
+</div>
+</div>
+</div>
+</body>
+
+<script>
+
+    var myContent = document.getElementById("memberId").value;
+    localStorage.clear();
+    localStorage.setItem("member_id", myContent);
+
+</script>
+
+</html>

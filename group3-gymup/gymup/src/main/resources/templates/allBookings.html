@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Bookings redirect</title>
+</head>
+
+<body onload="script();">
+
+<script>
+    function script() {
+        var user = localStorage.getItem('member_id');
+        if (typeof user === 'string') {
+            window.location ='/memberBookings/memberid=' + user;
+        } else if (user === ''){
+            window.location ='/main';
+        } else {
+            window.location ='/main';
+        }
+    }
+
+</script>
+
+</body>
+
+</html>

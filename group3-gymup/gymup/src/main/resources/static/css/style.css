@@ -1,0 +1,123 @@
+.background-image {
+    background-image: url("../img/backgroundT.jpg");
+    vertical-align: middle;
+    height: 100%;
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.vertical-center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    text-align: center;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.p {
+    text-align: center;
+    font-size: 3vh;
+    margin: 0% 0%; /* top: right: bottom: left */
+    font-weight: bolder;
+    width: 100%;
+}
+
+.wrapper {
+    text-align: center;
+}
+
+.book {
+    display: block;
+    width: 30%;
+    height: 15%;
+    margin: 5% 35%; /* top: right: bottom: left */
+    border: none;
+    background-color: #4d79ff;
+    color: white;
+    padding: 20px 2%;
+    font-size: 170%;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+}
+
+.removeUnderline {
+    text-decoration: none;
+}
+
+.book:hover {
+    background-color: #000060;
+    color: #ffffff;
+}
+
+/*logout style*/
+.logout {
+    display: block;
+    width: 30%;
+    height: 15%;
+    margin: 5% 35%;  /* top: right: bottom: left */
+    padding: 20px 2%;
+    font-size: 100%;
+    border: none;
+    background-color: #04AA6D;
+    color: white;
+    cursor: pointer;
+    text-align: center;
+}
+
+.logout:hover {
+    background-color: #600000;
+    color: #ffffff;
+}
+
+/*all booking style*/
+.allbooking {
+    display: block;
+    width: 30%;
+    height: 15%;
+    margin: 5% 35%;  /* top: right: bottom: left */
+    padding: 20px 2%;
+    font-size: 150%;
+    border: none;
+    background-color: #4d79ff;
+    color: white;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+}
+
+.allbooking:hover {
+    background-color: #000060;
+    color: #ffffff;
+}
+
+.confirmButton {
+    display: block;
+    width: 70%;
+    height: 15%;
+    margin: 0% 15%;  /* top: right: bottom: left */
+    padding: 20px 2%;
+    font-size: 150%;
+    border: none;
+    background-color: #4d79ff;
+    color: white;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+}
+
+.confirmButton:hover {
+    background-color: #000060;
+    color: #ffffff;
+}

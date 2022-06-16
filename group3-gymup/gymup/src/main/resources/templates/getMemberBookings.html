@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+
+    body {
+      background:url("/img/backgroundT.jpg") no-repeat center fixed;
+      background-size: cover;
+    }
+
+    table, td, th {
+      width: 80%;
+      border: 1px solid ghostwhite;
+      border-collapse: collapse;
+      text-align: center;
+      font-size: 20px;
+      table-layout: fixed;
+      background: lightskyblue;
+      opacity: 1;
+      color: black;
+      margin: 100px auto auto;
+    }
+
+    td, th {
+      padding: 20px;
+      opacity: 1;
+    }
+
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+    .wrapper {
+      text-align: center;
+    }
+
+    .buttonStyle {
+      display: block;
+      width: 30%;
+      height: 15%;
+      margin: 5% 35%;  /* top: right: bottom: left */
+      padding: 20px 2%;
+      font-size: 100%;
+      border: none;
+      background-color: #04AA6D;
+      color: white;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .buttonStyle:hover {
+      background-color: #600000;
+      color: #ffffff;
+    }
+  </style>
+  <title>All your bookings</title>
+
+</head>
+<body>
+<div class="background-image">
+<h1 style="text-align: center">GymUP™</h1>
+<h2 style="text-align:center">Bookings</h2>
+
+<table>
+  <tr>
+    <th>Booking id</th>
+    <th>Equipment name</th>
+    <th>Equipment id</th>
+    <th>Date</th>
+    <th>Start time</th>
+    <th>End time</th>
+    <th></th>
+  </tr>
+  $sample
+
+</table>
+
+<button onclick="script()" class="buttonStyle wrapper">GO BACK TO MAIN PAGE</button>
+
+<script>
+
+    function script() {
+    window.location ='/main';
+    }
+
+</script>
+
+</div>
+</body>
+</html>
+

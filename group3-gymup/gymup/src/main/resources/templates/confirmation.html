@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="js/background.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <title>GymUP book</title>
+
+</head>
+<body marginheight="0px" marginwidth="0px">
+<div class="background-image">
+    <h1 style="text-align: center">GymUP™</h1>
+    <h2 style="text-align: center">Confirm booking</h2>
+
+<form action="updateBookingToDatabase" method="POST">
+<div class="container">
+<div class="vertical-center">
+    <p><div class="row">
+    <div class="label"><label style="margin: 0 0 0 0; font-size: 150%">Member id: </label></div>
+        <div class="input"><label>
+            <input style="font-size: 150%" id="member_id" type="text" class = "box" name="memberId" readonly/>
+        </label></div>
+    </div></p>
+
+    <p><div class="row">
+        <div class="label"><label style="margin: 0 0 0 0; font-size: 150%">Equipment id: </label></div>
+        <div class="input"><label>
+            <input style="font-size: 150%" id="equipment-id" type="text" class = "box" name="equipmentId" readonly/>
+        </label></div>
+    </div></p>
+
+    <p><div class="row">
+        <div class="label"><label style="margin: 0 0 0 0; font-size: 150%">Date: </label></div>
+        <div class="input"><label>
+            <input style="font-size: 150%" id="date" type="text" class = "box" name="date" readonly/>
+        </label></div>
+    </div></p>
+
+    <p><div class="row">
+        <div class="label"><label style="margin: 0 0 0 0; font-size: 150%">Start time: </label></div>
+        <div class="input"><label>
+            <input style="font-size: 150%" id="start-time" type="text" class = "box" name="startTime" readonly/>
+        </label></div>
+    </div></p>
+
+    <p><div class="row">
+        <div class="label"><label style="margin: 0 0 0 0; font-size: 150%">End time: </label></div>
+        <div class="input"><label>
+            <input style="font-size: 150%" id="end-time" type="text" class = "box" name="endTime" readonly/>
+        </label></div>
+    </div></p>
+
+    <button class="confirmButton wrapper"><input type="submit" class="submit" hidden>Confirm</button>
+
+</div>
+</div>
+</form>
+</div>
+
+<script>
+    var mem = document.getElementById("member_id");
+    mem.value = localStorage.getItem("member_id");
+    var equip = document.getElementById("equipment-id");
+    equip.value = localStorage.getItem("equipment-id");
+    var date = document.getElementById("date");
+    date.value = localStorage.getItem("date");
+    var startTime = document.getElementById("start-time");
+    startTime.value = localStorage.getItem("start-time");
+    var endTime = document.getElementById("end-time");
+    endTime.value = localStorage.getItem("end-time");
+    </script>
+
+</body>
+
+</html>

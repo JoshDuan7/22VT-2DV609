@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>GymUP book</title>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
+  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+
+  <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body marginheight="0px" marginwidth="0px">
+<div class="background-image">
+  <h1 style="text-align: center">GymUP™</h1>
+  <h2 style="text-align: center">Select date</h2>
+
+<div class="container">
+  <div class="vertical-center">
+    <h2 style="margin-bottom: 0">Date:</h2>
+    <p><label for="datepicker"></label><input type="text" id="datepicker" style="font-size: 150%"></p>
+    <button id="alert" class="confirmButton wrapper">Confirm</button>
+  </div>
+</div>
+</div>
+</body>
+
+<script>
+  $(function() {
+    $( "#datepicker" ).datepicker({
+      changeYear: true,
+      changeMonth:true,
+      minDate: +1
+    });
+
+    //selecting the button and adding a click event
+    $("#alert").click(function() {
+      //alerting the value inside the textbox
+      var date = $("#datepicker").datepicker("getDate");
+      var memberId = localStorage.getItem("member_id");
+      localStorage.setItem("date",$.datepicker.formatDate("yy-mm-dd", date));
+      location = '/availableEquipment/' + memberId + '/date=' + $.datepicker.formatDate("yy-mm-dd", date);
+    });
+  });
+
+</script>
+</html>
